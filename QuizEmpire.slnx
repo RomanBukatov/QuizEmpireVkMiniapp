@@ -1,1 +1,6 @@
-<Solution />
+<Solution>
+  <Project Path="QuizEmpire.Api/QuizEmpire.Api.csproj" />
+  <Project Path="QuizEmpire.Application/QuizEmpire.Application.csproj" />
+  <Project Path="QuizEmpire.Domain/QuizEmpire.Domain.csproj" />
+  <Project Path="QuizEmpire.Infrastructure/QuizEmpire.Infrastructure.csproj" />
+</Solution>
