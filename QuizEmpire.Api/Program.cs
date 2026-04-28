@@ -3,6 +3,8 @@ using QuizEmpire.Infrastructure;
 using QuizEmpire.Domain.Interfaces;
 using QuizEmpire.Infrastructure.Repositories;
 using QuizEmpire.Application.Services;
+using QuizEmpire.Application.Interfaces;
+using QuizEmpire.Infrastructure.Services;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRegistrationRepository, RegistrationRepository>();
 builder.Services.AddScoped<IRegistrationService, RegistrationService>();
+
+builder.Services.AddHttpClient<INotificationService, VkNotificationService>();
 
 var app = builder.Build();
 
