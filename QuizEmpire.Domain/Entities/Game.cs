@@ -40,4 +40,20 @@ public class Game
         Status = status;
         CreatedAt = createdAt;
     }
+
+    public Game(int cityId, int venueId, string title, string description, string coverUrl, DateTime scheduledAt, decimal price, int minPlayersPerTeam, int maxPlayersPerTeam, int? maxTeams)
+    {
+        CityId = cityId;
+        VenueId = venueId;
+        Title = title;
+        Description = description;
+        CoverUrl = coverUrl;
+        ScheduledAt = scheduledAt;
+        Price = price;
+        MinPlayersPerTeam = minPlayersPerTeam;
+        MaxPlayersPerTeam = maxPlayersPerTeam;
+        MaxTeams = maxTeams ?? int.MaxValue; // If null, no limit
+        Status = GameStatus.Draft;
+        CreatedAt = DateTime.UtcNow;
+    }
 }

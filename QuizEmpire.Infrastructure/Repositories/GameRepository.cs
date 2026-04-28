@@ -32,4 +32,11 @@ public class GameRepository : IGameRepository
             .Include(g => g.Venue)
             .FirstOrDefaultAsync(g => g.Id == gameId);
     }
+
+    public async Task<Game> AddAsync(Game game)
+    {
+        _context.Games.Add(game);
+        await _context.SaveChangesAsync();
+        return game;
+    }
 }

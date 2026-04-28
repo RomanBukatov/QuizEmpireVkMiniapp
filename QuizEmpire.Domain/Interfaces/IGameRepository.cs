@@ -6,4 +6,5 @@ public interface IGameRepository
 {
     Task<IEnumerable<Game>> GetActiveGamesByCityAsync(int cityId);
     Task<Game?> GetGameByIdAsync(int gameId);
+    Task<Game> AddAsync(Game game);
 }
