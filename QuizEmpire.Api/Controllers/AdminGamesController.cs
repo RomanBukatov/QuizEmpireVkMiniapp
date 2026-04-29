@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuizEmpire.Application.DTOs;
 using QuizEmpire.Application.Services;
@@ -6,6 +7,7 @@ namespace QuizEmpire.Api.Controllers;
 
 [ApiController]
 [Route("api/v1/admin/games")]
+[Authorize]
 public class AdminGamesController : ControllerBase
 {
     private readonly IGameService _gameService;
