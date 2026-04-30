@@ -7,7 +7,10 @@ public record RegisterTeamDto(
     string LastName,
     string Phone,
     string TeamName,
-    int PlayerCount
+    int PlayerCount,
+    bool AllowJoinPlayers,
+    string? BirthdayPersonName,
+    string? Comment
 );
 
 public record RegistrationResultDto(

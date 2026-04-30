@@ -59,9 +59,8 @@ public class RegistrationService : IRegistrationService
 
         // 4. Создаем регистрацию
         decimal totalPrice = dto.PlayerCount * game.Price;
-        
-        // Убедись, что конструктор Registration в Domain принимает эти параметры
-        var registration = new Registration(game.Id, user.Id, dto.TeamName, dto.PlayerCount, totalPrice, RegStatus.Pending, DateTime.UtcNow);
+
+        var registration = new Registration(game.Id, user.Id, dto.TeamName, dto.PlayerCount, totalPrice, RegStatus.Pending, DateTime.UtcNow, dto.AllowJoinPlayers, dto.BirthdayPersonName, dto.Comment);
         
         await _regRepository.AddAsync(registration);
 
