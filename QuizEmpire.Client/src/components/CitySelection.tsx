@@ -1,6 +1,6 @@
 import { Search } from 'lucide-react';
 
-export default function CitySelection() {
+export default function CitySelection({ onSelectCity }: { onSelectCity: (city: string) => void }) {
   const cities = [
     "Москва", "Альметьевск", "Арзамас", "Арсеньев", "Архангельск",
     "Астрахань", "Барнаул", "Белгород", "Брянск", "Владивосток"
@@ -73,6 +73,7 @@ export default function CitySelection() {
             {cities.map((city, index) => (
               <button
                 key={index}
+                onClick={() => onSelectCity(city)} // <-- Added click
                 className={`text-left text-base md:text-lg hover:text-pink-600 transition-colors ${index === 0 ? 'font-bold text-gray-900' : 'text-gray-600 font-medium'}`}
               >
                 {city}

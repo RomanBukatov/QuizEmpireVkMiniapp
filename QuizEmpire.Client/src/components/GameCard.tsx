@@ -1,77 +1,55 @@
-import React from 'react';
-
-interface GameCardProps {
-  title: string;
-  date: string;
-  time: string;
-  price: number;
-  duration: string;
-  venue: string;
-  coverImage: string;
-  colorFrom: string; 
-  colorTo: string;   
-}
-
 export default function GameCard({
-  title,
-  date,
-  time,
-  price,
-  duration,
-  venue,
-  coverImage,
-  colorFrom,
-  colorTo
-}: GameCardProps) {
+  title, date, time, price, duration, venue, coverImage, colorFrom, colorTo
+}: any) {
   return (
-    <div className={`relative overflow-hidden rounded-[2rem] text-white shadow-sm bg-gradient-to-br ${colorFrom} ${colorTo}`}>
+    <div className="relative overflow-hidden rounded-[2rem] bg-white shadow-md border border-gray-100 flex min-h-[220px]">
       
-      {/* Фоновая картинка */}
-      <div className="absolute top-0 right-0 w-[60%] h-full z-0">
-        {/* Градиентная маска, чтобы сгладить переход от цвета к картинке */}
-        <div className={`absolute inset-0 bg-gradient-to-r ${colorFrom} via-transparent to-transparent z-10`}></div>
-        <img 
-          src={coverImage} 
-          alt={title} 
-          className="w-full h-full object-cover object-right"
-          onError={(e) => {
-            // Заглушка, если путь к картинке неверный
-            e.currentTarget.style.display = 'none'; 
-          }}
-        />
-      </div>
+      {/* ПРАВАЯ ЧАСТЬ: Градиентный фон (плавно переходит в белый налево) */}
+      <div className={`absolute top-0 right-0 w-[65%] h-full bg-gradient-to-l ${colorFrom} ${colorTo} to-transparent opacity-90 z-0`}></div>
+      <div className={`absolute top-0 right-0 w-[45%] h-full bg-gradient-to-br ${colorFrom} ${colorTo} z-0`}></div>
 
-      {/* Контент */}
-      <div className="relative z-20 p-6 sm:p-8 flex flex-col justify-between min-h-[240px]">
+      {/* ПРАВАЯ ЧАСТЬ: Картинка (обрезается снизу и справа) */}
+      <img 
+        src={coverImage} 
+        alt={title} 
+        className="absolute bottom-0 right-0 w-[40%] object-contain object-bottom-right z-0" 
+      />
+
+      {/* КОНТЕНТ */}
+      <div className="relative z-10 w-full p-6 flex flex-col justify-between">
         
-        {/* Верх (Название и Время) */}
-        <div className="flex justify-between items-start gap-4">
-          <div className="max-w-[60%]">
-            <h3 className="text-xl sm:text-2xl font-black leading-tight mb-3 uppercase drop-shadow-sm">
+        {/* ВЕРХ: Заголовок (Черный) и Дата/Время (Белые) */}
+        <div className="flex justify-between items-start">
+          <div className="w-[55%] relative z-20">
+            <h3 className="text-xl font-black text-gray-900 leading-tight mb-3 uppercase">
               {title}
             </h3>
-            <span className="inline-block bg-[#F8387F] text-white text-xs font-bold px-3 py-1.5 rounded-xl">
+            <span className="inline-block bg-gradient-to-r from-[#A020F0] to-[#E94057] text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-sm">
               Кафе "{venue}"
             </span>
           </div>
-          <div className="text-right shrink-0 drop-shadow-sm">
-            <div className="text-sm font-bold uppercase tracking-wider">{date}</div>
-            <div className="text-4xl sm:text-5xl font-black tracking-tighter">{time}</div>
+          
+          <div className="w-[40%] text-right text-white drop-shadow-md pr-2 relative z-20">
+            {/* СИЛЬНОЕ ФИОЛЕТОВОЕ НАПЫЛЕНИЕ ТОЧНО ПОД ДАТОЙ И ВРЕМЕНЕМ */}
+            <div className="absolute top-[-20px] right-[-20px] w-40 h-40 bg-[#A020F0] rounded-full mix-blend-normal filter blur-[35px] opacity-100 -z-10"></div>
+            
+            <div className="text-sm font-bold uppercase tracking-wider relative z-10">{date}</div>
+            <div className="text-4xl font-black tracking-tighter relative z-10">{time}</div>
           </div>
         </div>
 
-        {/* Низ (Цена и Кнопки) */}
-        <div className="mt-8 flex flex-col sm:flex-row sm:justify-between sm:items-end gap-4">
-          <div>
-            <div className="text-2xl font-black">{price} <span className="text-lg">₽/чел</span></div>
-            <div className="text-[#FFC266] font-bold text-sm">{duration}</div>
+        {/* НИЗ: Цена, Длительность, Кнопки */}
+        <div className="mt-6 flex justify-between items-end">
+          <div className="w-[45%]">
+            <div className="text-2xl font-black text-gray-900">{price} <span className="text-base font-bold">₽/чел</span></div>
+            <div className="text-[#FFAB3B] font-bold text-sm">{duration}</div>
           </div>
           
           <div className="flex gap-2">
-            <button className="bg-[#FFAB3B] hover:bg-[#F29C2E] text-white font-bold py-2.5 px-6 rounded-xl text-sm transition-colors shadow-md">
+            <button className="bg-[#FFAB3B] text-white font-bold py-2 px-6 rounded-xl text-sm transition-colors hover:bg-orange-500">
               Зарегистрироваться
             </button>
-            <button className="bg-white text-[#FFAB3B] hover:bg-gray-50 font-bold py-2.5 px-6 rounded-xl text-sm transition-colors shadow-md">
+            <button className="bg-white border-2 border-[#FFAB3B] text-[#FFAB3B] font-bold py-2 px-6 rounded-xl text-sm transition-colors hover:bg-gray-50">
               Подробнее
             </button>
           </div>
